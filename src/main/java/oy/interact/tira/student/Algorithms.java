@@ -14,6 +14,7 @@ public class Algorithms {
 
    public static <T extends Comparable<T>> void insertionSort(T[] array) {
       // TODO: Student, implement this.
+      insertionSort(array, 0, array.length);
    }
 
    ///////////////////////////////////////////
@@ -22,6 +23,17 @@ public class Algorithms {
 
    public static <T extends Comparable<T>> void insertionSort(T[] array, int fromIndex, int toIndex) {
       // TODO: Student, implement this.
+      for(int index = fromIndex; index < toIndex; index++) {
+         T currentValue = array[index];
+         int compareIndex = index-1;
+         //muuta nimi
+         while(compareIndex >= fromIndex && array[compareIndex].compareTo(currentValue) > 0) {
+            array[compareIndex +1] = array[compareIndex];
+            compareIndex--;
+         }
+         array[compareIndex+1] = currentValue;
+      }
+      
    }
 
    //////////////////////////////////////////////////////////
