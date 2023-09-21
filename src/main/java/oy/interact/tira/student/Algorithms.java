@@ -36,6 +36,12 @@ public class Algorithms {
       
    }
 
+   public static <T> void swap(T[] array, int first, int second) {
+      T temporary = array[first];
+      array[first] = array[second];
+      array[second] = temporary;
+   }
+
    //////////////////////////////////////////////////////////
    // Insertion Sort for the whole array using a Comparator
    //////////////////////////////////////////////////////////
@@ -70,9 +76,7 @@ public class Algorithms {
       // TODO: Student, implement this.
       int index2 = toIndex -1;
       while(index2 > fromIndex) {
-         T temporary = array[fromIndex];
-         array[fromIndex] = array[index2];
-         array[index2] = temporary;
+         swap(array, fromIndex, index2);
          index2--;
          fromIndex++;
       }
