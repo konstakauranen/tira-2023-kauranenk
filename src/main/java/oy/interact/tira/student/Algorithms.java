@@ -58,6 +58,14 @@ public class Algorithms {
 
    public static <T> void reverse(T[] array) {
       // TODO: Student, implement this.
+      int fromIndex = array.length -1;
+      for(int index = 0; index < array.length/2; index++) {
+         T temporary = array[index];
+         array[index] = array[fromIndex];
+         array[fromIndex] = temporary;
+
+         fromIndex--;
+      }
    }
 
    ///////////////////////////////////////////
@@ -66,6 +74,14 @@ public class Algorithms {
 
    public static <T> void reverse(T[] array, int fromIndex, int toIndex) {
       // TODO: Student, implement this.
+      int index2 = toIndex -1;
+      while(index2 > fromIndex) {
+         T temporary = array[fromIndex];
+         array[fromIndex] = array[index2];
+         array[index2] = temporary;
+         index2--;
+         fromIndex++;
+      }
    }
 
 
