@@ -58,14 +58,8 @@ public class Algorithms {
 
    public static <T> void reverse(T[] array) {
       // TODO: Student, implement this.
-      int fromIndex = array.length -1;
-      for(int index = 0; index < array.length/2; index++) {
-         T temporary = array[index];
-         array[index] = array[fromIndex];
-         array[fromIndex] = temporary;
-
-         fromIndex--;
-      }
+      //insertionSort(array, 0, array.length);
+      reverse(array, 0, array.length);
    }
 
    ///////////////////////////////////////////
