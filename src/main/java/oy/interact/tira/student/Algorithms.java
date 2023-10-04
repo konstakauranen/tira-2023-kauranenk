@@ -23,12 +23,11 @@ public class Algorithms {
 
    public static <T extends Comparable<T>> void insertionSort(T[] array, int fromIndex, int toIndex) {
       // TODO: Student, implement this.
-      for(int index = fromIndex; index < toIndex; index++) {
+      for(int index = fromIndex + 1; index < toIndex; index++) {
          T currentValue = array[index];
          int compareIndex = index-1;
-         //muuta nimi
          while(compareIndex >= fromIndex && array[compareIndex].compareTo(currentValue) > 0) {
-            array[compareIndex +1] = array[compareIndex];
+            swap(array, compareIndex, compareIndex + 1);
             compareIndex--;
          }
          array[compareIndex+1] = currentValue;
@@ -47,7 +46,7 @@ public class Algorithms {
    //////////////////////////////////////////////////////////
 
    public static <T> void insertionSort(T[] array, Comparator<T> comparator) {
-      // TODO: Student, implement this.
+      insertionSort(array, 0, array.length, comparator);
    }
 
    ////////////////////////////////////////////////////////////
@@ -55,7 +54,15 @@ public class Algorithms {
    ////////////////////////////////////////////////////////////
 
    public static <T> void insertionSort(T[] array, int fromIndex, int toIndex, Comparator<T> comparator) {
-      // TODO: Student, implement this.
+      for(int index = fromIndex + 1; index < toIndex; index++) {
+         T currentValue = array[index];
+         int compareIndex = index-1;
+         while(compareIndex >= fromIndex && comparator.compare(array[compareIndex], currentValue) > 0) {
+            swap(array, compareIndex, compareIndex + 1);
+            compareIndex--;
+         }
+         array[compareIndex+1] = currentValue;
+      }
    }
 
    ///////////////////////////////////////////
