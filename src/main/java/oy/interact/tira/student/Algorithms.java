@@ -71,7 +71,6 @@ public class Algorithms {
 
    public static <T> void reverse(T[] array) {
       // TODO: Student, implement this.
-      //insertionSort(array, 0, array.length);
       reverse(array, 0, array.length);
    }
 
