@@ -60,14 +60,23 @@ public class SimpleContainer<E extends Comparable<E>> implements TIRAContainer<E
 
 	@Override
 	public E get(E element) throws IllegalArgumentException {
-		// TODO: Student: finish this as part of task 02.
-		throw new NotYetImplementedException("Task 02-TASK on linear search not yet implemented");
+		for(int index = 0; index < count; index++) {
+			if(array[index].equals(element)) {
+				return array[index];
+			}
+		}
+		return null;
 	}
 
 	@Override
 	public int indexOf(E element, Comparator<E> usingComparator) {
 		// TODO: Student: finish this as part of task 02.
-		throw new NotYetImplementedException("Task 02-TASK on linear search not yet implemented");
+		for(int index = 0; index < count; index++) {
+			if(array[index].compareTo(element)==0) {
+				return index;
+			}
+		}
+		return -1;
 	}
 
 	// Note: This method is NOT USED by tests and TIRA Coders GUI.
@@ -113,14 +122,28 @@ public class SimpleContainer<E extends Comparable<E>> implements TIRAContainer<E
 
 	@Override
 	public int findIndex(Predicate<E> searcher) {
-		// TODO: Student: finish this as part of task 02.
-		throw new NotYetImplementedException("Task 02-TASK on linear search not yet implemented");
+		for(int index = 0; index < count; index++) {
+			if(null != array[index]) {
+				if(searcher.test(array[index])) {
+					return index;
+				}
+			}
+		}
+
+		return -1;
 	}
 
 	@Override
 	public E find(Predicate<E> searcher) {
-		// TODO: Student: finish this as part of task 02.
-		throw new NotYetImplementedException("Task 02-TASK on linear search not yet implemented");
+		for(int index = 0; index < count; index++) {
+			if(null != array[index]) {
+				if(searcher.test(array[index])) {
+					return array[index];
+				}
+			}
+		}
+
+		return null;
 	}
 
 	@Override
