@@ -71,6 +71,12 @@ public class SimpleContainer<E extends Comparable<E>> implements TIRAContainer<E
 	@Override
 	public int indexOf(E element, Comparator<E> usingComparator) {
 		// TODO: Student: finish this as part of task 02.
+
+		if(isSorted()) {
+			int index = Algorithms.binarySearch(element, array, 0, count, usingComparator);
+			return index;
+		}
+		
 		for(int index = 0; index < count; index++) {
 			if(array[index].compareTo(element)==0) {
 				return index;
@@ -207,13 +213,13 @@ public class SimpleContainer<E extends Comparable<E>> implements TIRAContainer<E
 	@Override
 	public void reverse() {
 		Algorithms.reverse(array, 0, count);
-		sorted = true;
 	}
 
 	// TEACHERS: TODO: Remove the call to Algorithms sort method.
 	@Override
 	public void sort() {
 		Algorithms.insertionSort(array, 0, count);
+		sorted = true;
 	}
 
 	// TEACHERS: TODO: Remove the call to Algorithms sort method.

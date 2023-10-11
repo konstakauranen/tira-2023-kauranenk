@@ -96,6 +96,23 @@ public class Algorithms {
    ///////////////////////////////////////////
 
    public static <T extends Comparable<T>> int binarySearch(T aValue, T[] fromArray, int fromIndex, int toIndex) {
+      int low = fromIndex;
+      int high = toIndex - 1;
+      int middle = 0;
+
+      while(low <= high) {
+         middle = low + (high - low) / 2;
+         if(fromArray[middle].compareTo(aValue) == 0) {
+            return middle;
+         }
+
+         if(fromArray[middle].compareTo(aValue) > 0) {
+            high = middle - 1;
+         } else {
+            low = middle + 1;
+         }
+      }
+
       return -1;
    }
 
@@ -104,6 +121,22 @@ public class Algorithms {
    ///////////////////////////////////////////
 
    public static <T> int binarySearch(T aValue, T[] fromArray, int fromIndex, int toIndex, Comparator<T> comparator) {
+      int low = fromIndex;
+      int high = toIndex -1;
+      int middle = 0;
+
+      while(low <= high) {
+         middle = low + (high - low) / 2;
+         if(comparator.compare(fromArray[middle], aValue) == 0) {
+            return middle;
+         }
+         if(comparator.compare(fromArray[middle], aValue) > 0) {
+            high = middle -1;
+         } else {
+            low = middle + 1;
+         }
+      }
+
       return -1;
    }
 
