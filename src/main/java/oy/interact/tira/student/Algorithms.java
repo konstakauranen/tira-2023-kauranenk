@@ -139,21 +139,39 @@ public class Algorithms {
    }
 
    public static <E extends Comparable<E>> void fastSort(E[] array) {
-      fastSort(array, 0, array.length - 1, Comparator.naturalOrder());
-  }
+      quickSort(array, 0, array.length - 1);
+   }
+
+   public static <E extends Comparable<E>> void fastSort(E[] array, int fromIndex, int toIndex) {
+      quickSort(array, fromIndex, toIndex-1);
+   }
+
+   public static <E extends Comparable<E>> void quickSort(E[] array, int fromIndex, int toIndex) {
+      
+      if (fromIndex < toIndex) {
+         int partitionIndex = comparablePartition(array, fromIndex, toIndex);
+         quickSort(array, fromIndex, partitionIndex - 1);
+         quickSort(array, partitionIndex + 1, toIndex);
+
+      }
+   }
   
   public static <E> void fastSort(E[] array, Comparator<E> comparator) {
-      fastSort(array, 0, array.length - 1, comparator);
-  }
+      quickSort(array, 0, array.length - 1, comparator);
+   }
   
   public static <E> void fastSort(E[] array, int fromIndex, int toIndex, Comparator<E> comparator) {
+      quickSort(array, fromIndex, toIndex-1, comparator);
+   }
+
+  public static <E> void quickSort(E[] array, int fromIndex, int toIndex, Comparator<E> comparator) {
       
       if (fromIndex < toIndex) {
           int partitionIndex = partition(array, fromIndex, toIndex, comparator);
-          fastSort(array, fromIndex, partitionIndex - 1, comparator);
-          fastSort(array, partitionIndex + 1, toIndex, comparator);
+          quickSort(array, fromIndex, partitionIndex - 1, comparator);
+          quickSort(array, partitionIndex + 1, toIndex, comparator);
       }
-  }
+   }
   
   private static <E> int partition(E[] array, int fromIndex, int toIndex, Comparator<E> comparator) {
    
@@ -170,7 +188,24 @@ public class Algorithms {
       swap(array, index1 + 1, toIndex);
 
       return index1 + 1;
-  }
+   }
+
+   private static <E extends Comparable<E>> int comparablePartition(E[] array, int fromIndex, int toIndex) {
+
+      E pivot = array[toIndex];
+      int index1 = fromIndex -1;
+
+      for (int index2 = fromIndex; index2 < toIndex; index2++) {
+         if (array[index2].compareTo(pivot) <= 0) {
+            index1++;
+            swap(array, index1, index2);
+         }
+      }
+
+      swap(array, index1 + 1, toIndex);
+
+      return index1 +1;
+   }
 
 
 }

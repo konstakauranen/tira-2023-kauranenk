@@ -102,7 +102,7 @@ Deadline on aina kyseisen viikon maanantaina klo 16:00 EET. Opettajien skriptit 
 
 Kurssi arvostellaan seuraavin periaattein:
 
-1. Opettajat tarkistavat välideadlinen yhteydessä, onko tehtävät tehty riittävälle tasolle (testit menevät läpi) **deadlineen** mennessä. Jos näin ei ole, jokaisen tehtävän, joka ei ole hyväksyttävä, pisteistä **vähennetään 1 piste**. Näitä miinuksia voi halutessaan kompensoida tekemällä valinnaisia tehtäviä. Mikäli pisteet eivät riitä kurssin läpäisyyn, valinnaisia tehtäviä on tehtävä 2ran että pisteet riittävät läpipääsyyn. On myös mahdollista parantaa tehtäviä siten että niistä saa mahdollisista miinuksista huolimatta lisää pisteitä läpi pääsemiseksi.
+1. Opettajat tarkistavat välideadlinen yhteydessä, onko tehtävät tehty riittävälle tasolle (testit menevät läpi) **deadlineen** mennessä. Jos näin ei ole, jokaisen tehtävän, joka ei ole hyväksyttävä, pisteistä **vähennetään 1 piste**. Näitä miinuksia voi halutessaan kompensoida tekemällä valinnaisia tehtäviä. Mikäli pisteet eivät riitä kurssin läpäisyyn, valinnaisia tehtäviä on tehtävä sen verran että pisteet riittävät läpipääsyyn. On myös mahdollista parantaa tehtäviä siten että niistä saa mahdollisista miinuksista huolimatta lisää pisteitä läpi pääsemiseksi.
 1. Lopullinen tehtävän pisteytys tehdään lopullisen arvioinnin yhteydessä, ja siinä otetaan huomioon väli- ja lopullisen deadlinen ylityksistä saadut miinuspisteet.
 1. Tentistä pitää saada vähintään 10 pistettä (max 20 pistettä).
 1. Koodin laatu vaikuttaa arvosteluun. Katso lista alla.
