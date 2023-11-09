@@ -13,7 +13,6 @@ public class Algorithms {
    ///////////////////////////////////////////
 
    public static <T extends Comparable<T>> void insertionSort(T[] array) {
-      // TODO: Student, implement this.
       insertionSort(array, 0, array.length);
    }
 
@@ -22,7 +21,6 @@ public class Algorithms {
    ///////////////////////////////////////////
 
    public static <T extends Comparable<T>> void insertionSort(T[] array, int fromIndex, int toIndex) {
-      // TODO: Student, implement this.
       for(int index = fromIndex + 1; index < toIndex; index++) {
          T currentValue = array[index];
          int compareIndex = index-1;
@@ -140,16 +138,39 @@ public class Algorithms {
       return -1;
    }
 
-   public static <E extends Comparable<E>> void fastSort(E [] array) {
-      // TODO: Student, implement this.
-   }
+   public static <E extends Comparable<E>> void fastSort(E[] array) {
+      fastSort(array, 0, array.length - 1, Comparator.naturalOrder());
+  }
+  
+  public static <E> void fastSort(E[] array, Comparator<E> comparator) {
+      fastSort(array, 0, array.length - 1, comparator);
+  }
+  
+  public static <E> void fastSort(E[] array, int fromIndex, int toIndex, Comparator<E> comparator) {
+      
+      if (fromIndex < toIndex) {
+          int partitionIndex = partition(array, fromIndex, toIndex, comparator);
+          fastSort(array, fromIndex, partitionIndex - 1, comparator);
+          fastSort(array, partitionIndex + 1, toIndex, comparator);
+      }
+  }
+  
+  private static <E> int partition(E[] array, int fromIndex, int toIndex, Comparator<E> comparator) {
+   
+      E pivot = array[toIndex];
+      int index1 = fromIndex - 1;
+  
+      for (int index2 = fromIndex; index2 < toIndex; index2++) {
+          if (comparator.compare(array[index2], pivot) <= 0) {
+              index1++;
+              swap(array, index1, index2);
+          }
+      }
+  
+      swap(array, index1 + 1, toIndex);
 
-   public static <E> void fastSort(E [] array, Comparator<E> comparator) {
-      // TODO: Student, implement this.
-   }
+      return index1 + 1;
+  }
 
-   public static <E> void fastSort(E [] array, int fromIndex, int toIndex, Comparator<E> comparator) {
-      // TODO: Student, implement this.
-   }
 
 }

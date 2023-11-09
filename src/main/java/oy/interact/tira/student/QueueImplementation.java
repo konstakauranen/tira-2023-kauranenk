@@ -53,7 +53,7 @@ public class QueueImplementation<E> implements QueueInterface<E>{
         } else {
             E element = (E) itemArray[head];
             itemArray[head] = null;
-            head++;
+            head = (head +1) % itemArray.length;
             count--;
             return element;
         }
