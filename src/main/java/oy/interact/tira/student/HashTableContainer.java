@@ -6,7 +6,7 @@ import oy.interact.tira.util.Pair;
 import oy.interact.tira.util.TIRAKeyedContainer;
 
 //lisaa mittari: mika oli keskimaarainen linkitetyn listan pituus
-//Lisaa suppress warnings ja paranna hajautusalgoritmia
+//Lisaa suppress warnings ja paranna hajautusalgoritmia ja luotausta
 
 public class HashTableContainer<K extends Comparable<K>,V> implements TIRAKeyedContainer<K,V> {
 
@@ -120,10 +120,6 @@ public class HashTableContainer<K extends Comparable<K>,V> implements TIRAKeyedC
 
     @Override
     public void clear() {
-        System.out.println(count);
-        System.out.println(maxProbes);
-        System.out.println(timesReallocated);
-        System.out.println(collisions);
         array = new Pair[DEFAULT_CAPACITY];
     }
 

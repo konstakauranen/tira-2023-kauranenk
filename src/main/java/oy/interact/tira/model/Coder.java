@@ -190,9 +190,12 @@ public class Coder implements Comparable<Coder> {
 	 */
 	@Override
 	public int hashCode() {
-		int hash = 31;
+		int hash = 1;
 		for (int i = 0; i<id.length(); i++) {
-			hash = hash * 17 + id.charAt(i);
+			hash = (hash << 5) ^ (hash >>> 3) ^ id.charAt(i) * 31;
+            if (hash%2 == 0) {
+                hash = hash%307;
+            }
 		}
 		return hash;
 	}
