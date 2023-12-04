@@ -21,10 +21,10 @@ public class Algorithms {
    ///////////////////////////////////////////
 
    public static <T extends Comparable<T>> void insertionSort(T[] array, int fromIndex, int toIndex) {
-      for(int index = fromIndex + 1; index < toIndex; index++) {
+      for (int index = fromIndex + 1; index < toIndex; index++) {
          T currentValue = array[index];
          int compareIndex = index-1;
-         while(compareIndex >= fromIndex && array[compareIndex].compareTo(currentValue) > 0) {
+         while (compareIndex >= fromIndex && array[compareIndex].compareTo(currentValue) > 0) {
             swap(array, compareIndex, compareIndex + 1);
             compareIndex--;
          }
@@ -52,10 +52,10 @@ public class Algorithms {
    ////////////////////////////////////////////////////////////
 
    public static <T> void insertionSort(T[] array, int fromIndex, int toIndex, Comparator<T> comparator) {
-      for(int index = fromIndex + 1; index < toIndex; index++) {
+      for (int index = fromIndex + 1; index < toIndex; index++) {
          T currentValue = array[index];
          int compareIndex = index-1;
-         while(compareIndex >= fromIndex && comparator.compare(array[compareIndex], currentValue) > 0) {
+         while (compareIndex >= fromIndex && comparator.compare(array[compareIndex], currentValue) > 0) {
             swap(array, compareIndex, compareIndex + 1);
             compareIndex--;
          }
@@ -79,7 +79,7 @@ public class Algorithms {
    public static <T> void reverse(T[] array, int fromIndex, int toIndex) {
       // TODO: Student, implement this.
       int index2 = toIndex -1;
-      while(index2 > fromIndex) {
+      while (index2 > fromIndex) {
          swap(array, fromIndex, index2);
          index2--;
          fromIndex++;
@@ -98,13 +98,13 @@ public class Algorithms {
       int high = toIndex - 1;
       int middle = 0;
 
-      while(low <= high) {
+      while (low <= high) {
          middle = low + (high - low) / 2;
-         if(fromArray[middle].compareTo(aValue) == 0) {
+         if (fromArray[middle].compareTo(aValue) == 0) {
             return middle;
          }
 
-         if(fromArray[middle].compareTo(aValue) > 0) {
+         if (fromArray[middle].compareTo(aValue) > 0) {
             high = middle - 1;
          } else {
             low = middle + 1;
@@ -123,12 +123,12 @@ public class Algorithms {
       int high = toIndex -1;
       int middle = 0;
 
-      while(low <= high) {
+      while (low <= high) {
          middle = low + (high - low) / 2;
-         if(comparator.compare(fromArray[middle], aValue) == 0) {
+         if (comparator.compare(fromArray[middle], aValue) == 0) {
             return middle;
          }
-         if(comparator.compare(fromArray[middle], aValue) > 0) {
+         if (comparator.compare(fromArray[middle], aValue) > 0) {
             high = middle -1;
          } else {
             low = middle + 1;
