@@ -5,13 +5,11 @@ import java.util.function.Predicate;
 import oy.interact.tira.util.Pair;
 import oy.interact.tira.util.TIRAKeyedContainer;
 
-//lisaa mittari: mika oli keskimaarainen linkitetyn listan pituus
-//Lisaa suppress warnings ja paranna hajautusalgoritmia ja luotausta
-
 public class HashTableContainer<K extends Comparable<K>,V> implements TIRAKeyedContainer<K,V> {
-
+    
     private static final int DEFAULT_CAPACITY = 40;
     private static final double LOAD_FACTOR = 0.65;
+    @SuppressWarnings("unchecked")
     private Pair<K,V>[] array = new Pair[DEFAULT_CAPACITY];
     private int count;
     private int collisions;
@@ -107,6 +105,7 @@ public class HashTableContainer<K extends Comparable<K>,V> implements TIRAKeyedC
         return array.length;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void ensureCapacity(int capacity) throws OutOfMemoryError, IllegalArgumentException {
         if (count == 0) {
@@ -118,17 +117,19 @@ public class HashTableContainer<K extends Comparable<K>,V> implements TIRAKeyedC
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void clear() {
         array = new Pair[DEFAULT_CAPACITY];
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Pair<K, V>[] toArray() throws Exception {
         Pair<K,V>[] newArray = new Pair[count];
         int newIndex = 0;
         for (int index = 0; index < array.length; index++) {
-            if(array[index] != null) {
+            if (array[index] != null) {
                 newArray[newIndex] = array[index];
                 newIndex++;
                 
@@ -138,6 +139,7 @@ public class HashTableContainer<K extends Comparable<K>,V> implements TIRAKeyedC
         return newArray;
     }
 
+    @SuppressWarnings("unchecked")
     private void reallocate(int capacity) {
         Pair<K, V>[] oldArray = array;
         array = new Pair[capacity];

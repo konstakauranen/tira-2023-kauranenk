@@ -8,7 +8,7 @@ import oy.interact.tira.util.Pair;
 class TreeNode<K extends Comparable<K>, V> {
 
     private Comparator<K> comparator;
-    Pair<K,V> pair;
+    private Pair<K,V> pair;
     private TreeNode<K,V> leftChild;
     private TreeNode<K,V> rightChild;
     private boolean result = false;

@@ -25,10 +25,10 @@ public class StackImplementation<E> implements StackInterface<E>{
 
     @Override
     public void push(E element) throws OutOfMemoryError, NullPointerException {
-        if(element == null) {
+        if (element == null) {
             throw new NullPointerException("Element must not be null");
         }
-        if(currentIndex >= capacity()-1) {
+        if (currentIndex >= capacity()-1) {
             reallocate();
         }
 
@@ -39,7 +39,7 @@ public class StackImplementation<E> implements StackInterface<E>{
 
     private void reallocate() {
         Object [] newArray = new Object[itemArray.length * 2];
-        for(int index = 0; index < itemArray.length; index ++) {
+        for (int index = 0; index < itemArray.length; index ++) {
             newArray[index] = itemArray[index];
         }
 
@@ -47,8 +47,9 @@ public class StackImplementation<E> implements StackInterface<E>{
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public E pop() throws IllegalStateException {
-        if(currentIndex < 0) {
+        if (isEmpty()) {
             throw new IllegalStateException("The array is empty");
         }
         E element = (E) itemArray[currentIndex];
@@ -58,8 +59,9 @@ public class StackImplementation<E> implements StackInterface<E>{
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public E peek() throws IllegalStateException {
-        if(currentIndex < 0) {
+        if (isEmpty()) {
             throw new IllegalStateException("Cannot peek to an empty array");
         }
         
@@ -74,7 +76,7 @@ public class StackImplementation<E> implements StackInterface<E>{
 
     @Override
     public boolean isEmpty() {
-        if(currentIndex == -1) {
+        if (currentIndex == -1) {
             return true;
         }
 
@@ -83,10 +85,7 @@ public class StackImplementation<E> implements StackInterface<E>{
 
     @Override
     public void clear() {
-        for(int index = 0; index < currentIndex; index++ ) {
-            itemArray[index] = null;
-        }
-
+        itemArray = new Object[DEFAULT_STACK_SIZE];
         currentIndex = -1;
     }
 
@@ -95,9 +94,9 @@ public class StackImplementation<E> implements StackInterface<E>{
         StringBuilder str = new StringBuilder();
         str.append("[");
 
-        for(int index = 0; index <= currentIndex; index++) {
+        for (int index = 0; index <= currentIndex; index++) {
             str.append(itemArray[index]);
-            if(index != currentIndex) {
+            if (index != currentIndex) {
                 str.append(", ");
             }
         }

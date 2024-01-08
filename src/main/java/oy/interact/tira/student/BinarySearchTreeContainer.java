@@ -10,9 +10,9 @@ import oy.interact.tira.util.Visitor;
 
 public class BinarySearchTreeContainer<K extends Comparable<K>, V> implements TIRAKeyedOrderedContainer<K, V> {
 
-    TreeNode<K,V> root;
-    int count = 0;
-    int maxDepth = 0;
+    private TreeNode<K,V> root;
+    private int count = 0;
+    private int maxDepth = 0;
     private Comparator<K> comparator;
 
     public BinarySearchTreeContainer(Comparator<K> comparator) {
@@ -21,6 +21,9 @@ public class BinarySearchTreeContainer<K extends Comparable<K>, V> implements TI
 
     @Override
     public void add(K key, V value) throws OutOfMemoryError, IllegalArgumentException {
+        if (key == null || value == null) {
+            throw new IllegalArgumentException("Parameters must not be null");
+        }
         if (root == null) {
             root = new TreeNode<K,V>(comparator, new Pair<K,V>(key, value));
             count++;
@@ -68,8 +71,8 @@ public class BinarySearchTreeContainer<K extends Comparable<K>, V> implements TI
             } else {
                 parent = stack.pop();
                 current = parent.getRight();
-                if (searcher.test(parent.pair.getValue())) {
-                    return parent.pair.getValue();
+                if (searcher.test(parent.getPair().getValue())) {
+                    return parent.getPair().getValue();
                 }
             }
         }
@@ -79,7 +82,6 @@ public class BinarySearchTreeContainer<K extends Comparable<K>, V> implements TI
 
     @Override
     public int size() {
-        System.out.println(count);
         return count;
     }
 
@@ -113,11 +115,9 @@ public class BinarySearchTreeContainer<K extends Comparable<K>, V> implements TI
 
     @Override
     public int indexOf(K itemKey) {
-
         if (root == null) {
             return -1;
         }
-
         int index = 0;
         StackImplementation<TreeNode<K,V>> stack = new StackImplementation<>();
         TreeNode<K,V> current = root;
@@ -131,7 +131,7 @@ public class BinarySearchTreeContainer<K extends Comparable<K>, V> implements TI
             } else {
                 parent = stack.pop();
                 current = parent.getRight();
-                if (comparator.compare(itemKey, parent.pair.getKey()) == 0) {
+                if (comparator.compare(itemKey, parent.getPair().getKey()) == 0) {
                     return index;
                 }
                 index++;
@@ -143,15 +143,12 @@ public class BinarySearchTreeContainer<K extends Comparable<K>, V> implements TI
 
     @Override
     public Pair<K, V> getIndex(int index) throws IndexOutOfBoundsException {
-
         if (root == null) {
             return null;
         }
-
         if (index < 0) {
             throw new IndexOutOfBoundsException("Negative index");
         }
-
         if (index >= size()) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
@@ -170,19 +167,17 @@ public class BinarySearchTreeContainer<K extends Comparable<K>, V> implements TI
                 parent = stack.pop();
                 if (currentIndex == index) {
                     current = parent.getRight();
-                    return parent.pair;
+                    return parent.getPair();
                 }
                 currentIndex++;
                 current = parent.getRight();
             }
-
         }
         return null;
     }
 
     @Override
     public int findIndex(Predicate<V> searcher) {
-
         if (root == null) {
             return -1;
         }
@@ -200,7 +195,7 @@ public class BinarySearchTreeContainer<K extends Comparable<K>, V> implements TI
             } else {
                 parent = stack.pop();
                 current = parent.getRight();
-                if (searcher.test(parent.pair.getValue())) {
+                if (searcher.test(parent.getPair().getValue())) {
                     return currentIndex;
                 }
 
@@ -213,13 +208,11 @@ public class BinarySearchTreeContainer<K extends Comparable<K>, V> implements TI
 
     @Override
     public void accept(Visitor<K, V> visitor) throws Exception {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'accept'");
     }
 
     @Override
     public V remove(K key) throws IllegalArgumentException {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'remove'");
     }
 }

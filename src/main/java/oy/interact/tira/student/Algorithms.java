@@ -68,7 +68,6 @@ public class Algorithms {
    ///////////////////////////////////////////
 
    public static <T> void reverse(T[] array) {
-      // TODO: Student, implement this.
       reverse(array, 0, array.length);
    }
 
@@ -77,7 +76,6 @@ public class Algorithms {
    ///////////////////////////////////////////
 
    public static <T> void reverse(T[] array, int fromIndex, int toIndex) {
-      // TODO: Student, implement this.
       int index2 = toIndex -1;
       while (index2 > fromIndex) {
          swap(array, fromIndex, index2);
@@ -85,9 +83,6 @@ public class Algorithms {
          fromIndex++;
       }
    }
-
-
-
 
    ///////////////////////////////////////////
    // Binary search bw indices
@@ -145,16 +140,6 @@ public class Algorithms {
    public static <E extends Comparable<E>> void fastSort(E[] array, int fromIndex, int toIndex) {
       quickSort(array, fromIndex, toIndex-1);
    }
-
-   public static <E extends Comparable<E>> void quickSort(E[] array, int fromIndex, int toIndex) {
-      
-      if (fromIndex < toIndex) {
-         int partitionIndex = comparablePartition(array, fromIndex, toIndex);
-         quickSort(array, fromIndex, partitionIndex - 1);
-         quickSort(array, partitionIndex + 1, toIndex);
-
-      }
-   }
   
   public static <E> void fastSort(E[] array, Comparator<E> comparator) {
       quickSort(array, 0, array.length - 1, comparator);
@@ -164,8 +149,16 @@ public class Algorithms {
       quickSort(array, fromIndex, toIndex-1, comparator);
    }
 
-  public static <E> void quickSort(E[] array, int fromIndex, int toIndex, Comparator<E> comparator) {
-      
+  public static <E extends Comparable<E>> void quickSort(E[] array, int fromIndex, int toIndex) {   
+      if (fromIndex < toIndex) {
+         int partitionIndex = comparablePartition(array, fromIndex, toIndex);
+         quickSort(array, fromIndex, partitionIndex - 1);
+         quickSort(array, partitionIndex + 1, toIndex);
+
+      }
+   } 
+
+  public static <E> void quickSort(E[] array, int fromIndex, int toIndex, Comparator<E> comparator) {   
       if (fromIndex < toIndex) {
           int partitionIndex = partition(array, fromIndex, toIndex, comparator);
           quickSort(array, fromIndex, partitionIndex - 1, comparator);
@@ -173,39 +166,29 @@ public class Algorithms {
       }
    }
   
-  private static <E> int partition(E[] array, int fromIndex, int toIndex, Comparator<E> comparator) {
-   
+  private static <E> int partition(E[] array, int fromIndex, int toIndex, Comparator<E> comparator) { 
       E pivot = array[toIndex];
-      int index1 = fromIndex - 1;
-  
+      int index1 = fromIndex - 1; 
       for (int index2 = fromIndex; index2 < toIndex; index2++) {
           if (comparator.compare(array[index2], pivot) <= 0) {
               index1++;
               swap(array, index1, index2);
           }
       }
-  
       swap(array, index1 + 1, toIndex);
-
       return index1 + 1;
    }
 
    private static <E extends Comparable<E>> int comparablePartition(E[] array, int fromIndex, int toIndex) {
-
       E pivot = array[toIndex];
       int index1 = fromIndex -1;
-
       for (int index2 = fromIndex; index2 < toIndex; index2++) {
          if (array[index2].compareTo(pivot) <= 0) {
             index1++;
             swap(array, index1, index2);
          }
       }
-
       swap(array, index1 + 1, toIndex);
-
       return index1 +1;
    }
-
-
 }

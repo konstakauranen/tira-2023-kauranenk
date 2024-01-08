@@ -1,7 +1,5 @@
 package oy.interact.tira.student;
 
-import java.nio.channels.IllegalSelectorException;
-
 import oy.interact.tira.util.QueueInterface;
 
 public class QueueImplementation<E> implements QueueInterface<E>{
@@ -9,10 +7,10 @@ public class QueueImplementation<E> implements QueueInterface<E>{
     private int head = 0;
     private int tail = 0;
     private int count = 0;
-    private static final int DEFAULT_STACK_SIZE = 10;
+    private static final int DEFAULT_QUEUE_SIZE = 10;
 
     public QueueImplementation() {
-        itemArray = new Object[DEFAULT_STACK_SIZE];
+        itemArray = new Object[DEFAULT_QUEUE_SIZE];
     }
 
     public QueueImplementation(int size) {
@@ -47,8 +45,9 @@ public class QueueImplementation<E> implements QueueInterface<E>{
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public E dequeue() throws IllegalStateException {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new IllegalStateException("The queue is empty");
         } else {
             E element = (E) itemArray[head];
@@ -60,8 +59,9 @@ public class QueueImplementation<E> implements QueueInterface<E>{
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public E element() throws IllegalStateException {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new IllegalStateException("The queue is empty");
         }
 
@@ -75,7 +75,7 @@ public class QueueImplementation<E> implements QueueInterface<E>{
 
     @Override
     public boolean isEmpty() {
-        if(count == 0) {
+        if (count == 0) {
             return true;
         } else {
             return false;
@@ -84,7 +84,7 @@ public class QueueImplementation<E> implements QueueInterface<E>{
 
     @Override
     public void clear() {
-        itemArray = new Object[DEFAULT_STACK_SIZE];
+        itemArray = new Object[DEFAULT_QUEUE_SIZE];
         head = 0;
         tail = 0;
         count = 0;
@@ -98,14 +98,14 @@ public class QueueImplementation<E> implements QueueInterface<E>{
         int counter = count;
         int index = head;
 
-        while(counter > 0) {
+        while (counter > 0) {
             str.append(itemArray[index]);
-            if(counter > 1) {
+            if (counter > 1) {
                 str.append(", ");
             }
             index++;
             counter--;
-            if(index >= itemArray.length) {
+            if (index >= itemArray.length) {
                 index = 0;
             }
         }
